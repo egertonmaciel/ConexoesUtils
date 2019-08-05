@@ -11,7 +11,7 @@ public class Log {
 
     private static final String ARQUIVO_LOG = PropSqlUtils.get("dirArquivo.log");
 
-    private static final Date DATE = new Date();
+    private static Date date;
     private static final SimpleDateFormat DIA = new SimpleDateFormat("yyyy_MM_dd");
     private static final SimpleDateFormat DATETIME = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -28,8 +28,9 @@ public class Log {
     }
 
     private static void escrever(String texto) {
-        String arquivo = ARQUIVO_LOG + DIA.format(DATE) + ".log";
-        String hora = DATETIME.format(DATE);
+        date = new Date();
+        String arquivo = ARQUIVO_LOG + DIA.format(date) + ".log";
+        String hora = DATETIME.format(date);
         String textoFinal = hora + " " + texto + "\n";
         System.out.println("LOG: " + hora + " " + texto);
         ArquivoUtils log = ArquivoUtils.escrever(arquivo, textoFinal, true);
